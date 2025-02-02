@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lava Rápido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #007BFF, #00C6FF);
+            color: white;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            font-size: 24px;
+        }
+        section {
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            color: black;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .contact-links {
+            margin-top: 20px;
+        }
+        .contact-links a {
+            display: block;
+            margin: 10px 0;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+        video, img {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>Lava Rápido - Atendimento Online</header>
+    <section>
+        <div class="container">
+            <h2>Agende seu Atendimento</h2>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" placeholder="Seu nome"><br><br>
+            <label for="car">Modelo do Carro:</label>
+            <input type="text" id="car" placeholder="Ex: Honda Civic"><br><br>
+            <label for="date">Data:</label>
+            <input type="date" id="date"><br><br>
+            <button onclick="agendar()">Agendar</button>
+            <p id="mensagem"></p>
+            <div class="contact-links">
+                <h3>Contato</h3>
+                <a href="mailto:fernandoharrysson77@gmail.com">Enviar e-mail</a>
+                <a href="https://wa.me/5515996287817" target="_blank">Fale conosco no WhatsApp</a>
+                <a href="https://www.instagram.com/gw.capela?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Siga-nos no Instagram</a>
+                <!-- Link para o site -->
+                <a href="https://www.exemplo.com" target="_blank">Visite nosso site</a>
+            </div>
+            <div class="car-wash-video" style="margin-top: 20px;">
+                <h3>Carros sendo lavados</h3>
+                <video width="100%" controls>
+                    <source src="video-carros-lavando.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos incorporados.
+                </video>
+            </div>
+        </div>
+    </section>
+    <script>
+        function agendar() {
+            let nome = document.getElementById("name").value;
+            let carro = document.getElementById("car").value;
+            let data = document.getElementById("date").value;
+            
+            if (nome && carro && data) {
+                let mensagem = `Agendamento realizado para ${nome} com o carro ${carro} no dia ${data}.`;
+                document.getElementById("mensagem").innerText = mensagem;
+                
+                let whatsappMessage = encodeURIComponent(mensagem);
+                let whatsappLink = `https://wa.me/5515996287817?text=${whatsappMessage}`;
+                
+                document.getElementById("mensagem").innerHTML += `
+                    <p><strong>Clique abaixo para confirmar o agendamento via WhatsApp:</strong></p>
+                    <a href="${whatsappLink}" target="_blank" style="color: #007BFF; font-size: 18px; text-decoration: underline;">Confirmar no WhatsApp</a>
+                `;
+            } else {
+                document.getElementById("mensagem").innerText = "Por favor, preencha todos os campos.";
+            }
+        }
+    </script>
+</body>
+</html>
